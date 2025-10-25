@@ -2,6 +2,12 @@ const express = require('express');
 const app = express();
 app.set('view engine', 'ejs')
 const morgan=require('morgan')
+// import use model
+const userModel=require('./models/user') // with we can do CRUD operation
+// import connection
+const dbConnection=require('./config/db')
+
+
 
 // TOPIC - FRONTEND se input data ko server ke thorugh backend main bhejna
 
