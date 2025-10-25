@@ -1,7 +1,0 @@
- depedecies
-    1. npm init -y
-    2. npm i express ejs 
-
-creating shortcut 
-    npm nodemon app.js -> package.json -> scripts-> add "start":"npx nodemon app.js"
-    now if we give npm start the app.js wii=ll run
