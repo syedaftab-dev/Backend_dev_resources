@@ -34,6 +34,8 @@ app.post('/register', async (req,res)=>{
     
     // creating user in database this is an asynscronous code
     // makeing it sysnchronous by giveing asyn in above callback
+
+    // we created user in this ie CRUD ,Create -> done
     const newUser = await userModel.create({
         username:username,
         email:email,
@@ -52,6 +54,46 @@ app.post('/register', async (req,res)=>{
     res.send(newUser)
 })
 
+// READ OPERATIONS
+app.get('/get-users',(req,res)=>{
+    // brings ALL users from DB inside then
+    // we can get specific user by giving coniditon
+    // what if we give a condition which doesnt exist it gives -> []
+
+    // userModel.find({username:'b'}).then((users)=>{
+    //     res.send(users);
+    // })
+    // brings only one user
+
+    userModel.findOne({
+        username:'b' // we have 2 b user but it give only one with first in DB
+        // what if we give a condition which doesnt exist it gives -> nothing on screen ie null on console 
+    }).then((user)=>{
+        res.send(user)
+    })
+})
+
+// UPDATE OPERATIONS
+
+app.get('/update-user',async (req,res)=>{
+    // first we need to find the user and then update
+    // we have combine method
+    await userModel.findOneAndUpdate({
+        username:'a' // find this
+    },{
+        email:'c@c.com' // update its email
+    })
+    res.send('user updated!')
+})
+
+//  DELETE OPERATIONS
+
+app.get('/delete-user', async (req,res)=>{
+    await userModel.findOneAndDelete({
+        username:'a'
+    })
+    res.send('user deleted!')
+})
 
 // we need a route to read data from input
 app.post('/get-form-data',(req,res)=>{

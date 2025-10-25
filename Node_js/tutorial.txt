@@ -5,3 +5,6 @@ what is npm ? npm ki website se packages ko lane keliye use hotha
 package.json ? application ke ander konse konse dependecies hai(node modules main hothi hai),have basic info about the application
 
 package-lock.json ? ismain detail main info hothi hai packages ki (npm i)to install
+
+
+CRUD - operations
