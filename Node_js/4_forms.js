@@ -25,6 +25,33 @@ app.use(express.urlencoded({extended:true}))
 app.use(express.static("public"))
 
 
+// to take user details as page to show
+app.get('/register',(req,res)=>{
+    res.render('register')
+})
+app.post('/register', async (req,res)=>{
+    const {username,email,password}=req.body;
+    
+    // creating user in database this is an asynscronous code
+    // makeing it sysnchronous by giveing asyn in above callback
+    const newUser = await userModel.create({
+        username:username,
+        email:email,
+        password:password
+    })
+    /* we got this with with extra variables _id and __v created by monggose
+        with _id it make every user unique with ids and __v -> no of times user updated
+            {
+        "username": "b",
+        "email": "b@b.com",
+        "password": "b",
+        "_id": "68fc61fee424b6b45bc09d75",
+        "__v": 0
+        }
+    */
+    res.send(newUser)
+})
+
 
 // we need a route to read data from input
 app.post('/get-form-data',(req,res)=>{
